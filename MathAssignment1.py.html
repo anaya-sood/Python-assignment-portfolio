@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Math Assignment 1.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Math Assignment 1.py</font>
+</center></td></tr></table>
+<pre><span class="s0">def </span><span class="s1">taylor_arctan</span><span class="s2">(</span><span class="s1">x</span><span class="s2">):</span>
+    <span class="s0">if </span><span class="s1">x </span><span class="s2">&lt; </span><span class="s3">0 </span><span class="s0">or </span><span class="s1">x </span><span class="s2">&gt; </span><span class="s3">1</span><span class="s2">:</span>
+        <span class="s0">return </span><span class="s4">&quot;Error!&quot;</span>
+
+    <span class="s1">approximation </span><span class="s2">= </span><span class="s3">0</span>
+    <span class="s1">n </span><span class="s2">= </span><span class="s3">0</span>
+    <span class="s1">term </span><span class="s2">= </span><span class="s1">x  </span><span class="s5"># Initial term for the series</span>
+    <span class="s1">error_bound </span><span class="s2">= </span><span class="s3">0.0001  </span><span class="s5"># Desired error bound</span>
+    <span class="s0">while </span><span class="s1">abs</span><span class="s2">(</span><span class="s1">term</span><span class="s2">) &gt; </span><span class="s1">error_bound</span><span class="s2">:</span>
+        <span class="s1">term </span><span class="s2">= ((-</span><span class="s3">1</span><span class="s2">) ** </span><span class="s1">n </span><span class="s2">* </span><span class="s1">x </span><span class="s2">** (</span><span class="s3">2 </span><span class="s2">* </span><span class="s1">n </span><span class="s2">+ </span><span class="s3">1</span><span class="s2">)) / (</span><span class="s3">2 </span><span class="s2">* </span><span class="s1">n </span><span class="s2">+ </span><span class="s3">1</span><span class="s2">)</span>
+        <span class="s1">approximation </span><span class="s2">+= </span><span class="s1">term</span>
+        <span class="s1">n </span><span class="s2">+= </span><span class="s3">1</span>
+
+    <span class="s0">return </span><span class="s1">approximation</span><span class="s2">, </span><span class="s1">n</span>
+
+
+<span class="s5"># Test the function with the given inputs</span>
+<span class="s1">test_values </span><span class="s2">= [-</span><span class="s3">1</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">0.25</span><span class="s2">, </span><span class="s3">0.5</span><span class="s2">, </span><span class="s3">0.75</span><span class="s2">, </span><span class="s3">1</span><span class="s2">]</span>
+<span class="s0">for </span><span class="s1">value </span><span class="s0">in </span><span class="s1">test_values</span><span class="s2">:</span>
+    <span class="s1">result </span><span class="s2">= </span><span class="s1">taylor_arctan</span><span class="s2">(</span><span class="s1">value</span><span class="s2">)</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s4">f&quot;arctan(</span><span class="s0">{</span><span class="s1">value</span><span class="s0">}</span><span class="s4">) ≈ </span><span class="s0">{</span><span class="s1">result</span><span class="s2">[</span><span class="s3">0</span><span class="s2">]</span><span class="s0">} </span><span class="s4">with </span><span class="s0">{</span><span class="s1">result</span><span class="s2">[</span><span class="s3">1</span><span class="s2">]</span><span class="s0">} </span><span class="s4">terms&quot;</span><span class="s2">)</span>
+</pre>
+</body>
+</html>

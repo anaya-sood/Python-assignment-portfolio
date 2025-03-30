@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Anaya Sood - Math Assignment 2.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #5f826b; font-style: italic;}
+.s5 { color: #7a7e85;}
+.s6 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Anaya Sood - Math Assignment 2.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">math</span>
+<span class="s0">import </span><span class="s1">numpy </span><span class="s0">as </span><span class="s1">np</span>
+
+
+<span class="s0">def </span><span class="s1">roots</span><span class="s2">(</span><span class="s1">f</span><span class="s2">, </span><span class="s1">a</span><span class="s2">, </span><span class="s1">b</span><span class="s2">, </span><span class="s1">tolerance</span><span class="s2">=</span><span class="s3">1e-10</span><span class="s2">, </span><span class="s1">max_iterations</span><span class="s2">=</span><span class="s3">1000</span><span class="s2">):</span>
+    <span class="s4">&quot;&quot;&quot; 
+    Find a root of function f on interval [a,b] using the bisection method. 
+ 
+    Args: 
+        f: The function to find roots for 
+        a: Left endpoint of interval 
+        b: Right endpoint of interval 
+        tolerance: Desired accuracy (default 1e-10 for 10 decimal places) 
+        max_iterations: Maximum number of iterations 
+ 
+    Returns: 
+        float: Approximate root of f(x) = 0 
+    &quot;&quot;&quot;</span>
+    <span class="s5"># Check if endpoints have different signs</span>
+    <span class="s0">if </span><span class="s1">f</span><span class="s2">(</span><span class="s1">a</span><span class="s2">) * </span><span class="s1">f</span><span class="s2">(</span><span class="s1">b</span><span class="s2">) &gt; </span><span class="s3">0</span><span class="s2">:</span>
+        <span class="s0">return None  </span><span class="s5"># No guaranteed root in interval</span>
+
+    <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s1">max_iterations</span><span class="s2">):</span>
+        <span class="s1">c </span><span class="s2">= (</span><span class="s1">a </span><span class="s2">+ </span><span class="s1">b</span><span class="s2">) / </span><span class="s3">2  </span><span class="s5"># Midpoint</span>
+
+        <span class="s0">if </span><span class="s1">abs</span><span class="s2">(</span><span class="s1">f</span><span class="s2">(</span><span class="s1">c</span><span class="s2">)) &lt; </span><span class="s1">tolerance</span><span class="s2">:  </span><span class="s5"># Found root within tolerance</span>
+            <span class="s0">return </span><span class="s1">c</span>
+
+        <span class="s0">if </span><span class="s1">f</span><span class="s2">(</span><span class="s1">c</span><span class="s2">) * </span><span class="s1">f</span><span class="s2">(</span><span class="s1">a</span><span class="s2">) &lt; </span><span class="s3">0</span><span class="s2">:  </span><span class="s5"># Root is in left half</span>
+            <span class="s1">b </span><span class="s2">= </span><span class="s1">c</span>
+        <span class="s0">else</span><span class="s2">:  </span><span class="s5"># Root is in right half</span>
+            <span class="s1">a </span><span class="s2">= </span><span class="s1">c</span>
+
+    <span class="s0">return </span><span class="s2">(</span><span class="s1">a </span><span class="s2">+ </span><span class="s1">b</span><span class="s2">) / </span><span class="s3">2  </span><span class="s5"># Return best approximation if max iterations reached</span>
+
+
+<span class="s5"># Test functions</span>
+<span class="s0">def </span><span class="s1">f1</span><span class="s2">(</span><span class="s1">x</span><span class="s2">): </span><span class="s0">return </span><span class="s1">math</span><span class="s2">.</span><span class="s1">exp</span><span class="s2">(</span><span class="s1">x</span><span class="s2">) + </span><span class="s1">math</span><span class="s2">.</span><span class="s1">log</span><span class="s2">(</span><span class="s1">x</span><span class="s2">)</span>
+
+
+<span class="s0">def </span><span class="s1">f2</span><span class="s2">(</span><span class="s1">x</span><span class="s2">): </span><span class="s0">return </span><span class="s1">math</span><span class="s2">.</span><span class="s1">atan</span><span class="s2">(</span><span class="s1">x</span><span class="s2">) - </span><span class="s1">x </span><span class="s2">** </span><span class="s3">2</span>
+
+
+<span class="s0">def </span><span class="s1">f3</span><span class="s2">(</span><span class="s1">x</span><span class="s2">): </span><span class="s0">return </span><span class="s1">math</span><span class="s2">.</span><span class="s1">sin</span><span class="s2">(</span><span class="s1">x</span><span class="s2">) * </span><span class="s1">math</span><span class="s2">.</span><span class="s1">log</span><span class="s2">(</span><span class="s1">x</span><span class="s2">)</span>
+
+
+<span class="s0">def </span><span class="s1">f4</span><span class="s2">(</span><span class="s1">x</span><span class="s2">): </span><span class="s0">return </span><span class="s1">math</span><span class="s2">.</span><span class="s1">log</span><span class="s2">(</span><span class="s1">math</span><span class="s2">.</span><span class="s1">cos</span><span class="s2">(</span><span class="s1">x</span><span class="s2">))</span>
+
+
+<span class="s5"># Run test cases</span>
+<span class="s1">test_cases </span><span class="s2">= [</span>
+    <span class="s2">(</span><span class="s1">f1</span><span class="s2">, </span><span class="s3">0.1</span><span class="s2">, </span><span class="s3">1</span><span class="s2">),  </span><span class="s5"># Modified slightly since ln(0) is undefined</span>
+    <span class="s2">(</span><span class="s1">f2</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">2</span><span class="s2">),</span>
+    <span class="s2">(</span><span class="s1">f3</span><span class="s2">, </span><span class="s3">3</span><span class="s2">, </span><span class="s3">4</span><span class="s2">),</span>
+    <span class="s2">(</span><span class="s1">f4</span><span class="s2">, </span><span class="s3">5</span><span class="s2">, </span><span class="s3">7</span><span class="s2">)</span>
+<span class="s2">]</span>
+
+<span class="s1">print</span><span class="s2">(</span><span class="s6">&quot;Testing root finding for various functions:&quot;</span><span class="s2">)</span>
+<span class="s0">for </span><span class="s1">f</span><span class="s2">, </span><span class="s1">a</span><span class="s2">, </span><span class="s1">b </span><span class="s0">in </span><span class="s1">test_cases</span><span class="s2">:</span>
+    <span class="s1">root </span><span class="s2">= </span><span class="s1">roots</span><span class="s2">(</span><span class="s1">f</span><span class="s2">, </span><span class="s1">a</span><span class="s2">, </span><span class="s1">b</span><span class="s2">)</span>
+    <span class="s0">if </span><span class="s1">root </span><span class="s0">is not None</span><span class="s2">:</span>
+        <span class="s1">print</span><span class="s2">(</span><span class="s6">f&quot;</span><span class="s0">\n</span><span class="s6">Root found at x ≈ </span><span class="s0">{</span><span class="s1">root</span><span class="s0">:</span><span class="s6">.10f</span><span class="s0">}</span><span class="s6">&quot;</span><span class="s2">)</span>
+        <span class="s1">print</span><span class="s2">(</span><span class="s6">f&quot;f(x) ≈ </span><span class="s0">{</span><span class="s1">f</span><span class="s2">(</span><span class="s1">root</span><span class="s2">)</span><span class="s0">:</span><span class="s6">.10e</span><span class="s0">}</span><span class="s6">&quot;</span><span class="s2">)</span>
+    <span class="s0">else</span><span class="s2">:</span>
+        <span class="s1">print</span><span class="s2">(</span><span class="s6">&quot;</span><span class="s0">\n</span><span class="s6">No root found in the given interval&quot;</span><span class="s2">)</span></pre>
+</body>
+</html>
